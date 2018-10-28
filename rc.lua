@@ -87,8 +87,8 @@ local themes = {
 local chosen_theme = themes[5]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "terminator"
-local editor       = os.getenv("EDITOR") or "vim"
+local terminal     = "konsole"
+local editor       = os.getenv("EDITOR") or "code"
 local gui_editor   = "code"
 local browser      = "chrome"
 local guieditor    = "code"
@@ -187,23 +187,24 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 -- }}}
 
 -- {{{ Menu
+
 local myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
+    { "Terminal", terminal },
+    { "Shutdown", function() awesome.spawn( "poweroff" ) end },
+    { "Reboot", function() awesome.spawn( "reboot" ) end },
+    { "Logout", function() awesome.quit() end },
 }
+
+
 awful.util.mymainmenu = freedesktop.menu.build({
     icon_size = beautiful.menu_height or 16,
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon },
         -- other triads can be put here
-    },
-    after = {
-        { "Open terminal", terminal },
-        -- other triads can be put here
-    }
+    } --,
+    -- after = {,
+    --     -- other triads can be put here
+    -- }
 })
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
@@ -695,9 +696,9 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, {size = 30}) : setup {
+    awful.titlebar(c, {size = 32}) : setup {
         { -- Left
-            awful.titlebar.widget.iconwidget(c),
+            -- awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
             layout  = wibox.layout.fixed.horizontal
         },
