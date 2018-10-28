@@ -291,7 +291,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 32, bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 36, bg = theme.bg_normal, fg = theme.fg_normal })
     s.borderwibox = awful.wibar({ position = "top", screen = s, height = 1, bg = theme.fg_focus, x = 0, y = 33})
 
     -- Add widgets to the wibox
@@ -330,8 +330,8 @@ function theme.at_screen_connect(s)
             temp.widget,
             baticon,
             bat.widget,
-            -- clockicon,
-            -- mytextclock,
+            clockicon,
+            mytextclock,
             s.mylayoutbox
         },
     }

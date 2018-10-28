@@ -402,9 +402,9 @@ globalkeys = my_table.join(
               {description = "show weather", group = "widgets"}),
 
     -- Brightness
-    awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end,
+    awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 1") end,
               {description = "+10%", group = "hotkeys"}),
-    awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end,
+    awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 1") end,
               {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
@@ -696,7 +696,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, {size = 32}) : setup {
+    awful.titlebar(c, {size = 36}) : setup {
         { -- Left
             -- awful.titlebar.widget.iconwidget(c),
             buttons = buttons,
