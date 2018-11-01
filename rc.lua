@@ -355,7 +355,7 @@ globalkeys = my_table.join(
               {description = "delete tag", group = "tag"}),
 
     -- Standard program
-    awful.key({ modkey,      "Control"     }, "t", function () awful.spawn(terminal) end,
+    awful.key({ "Control",      "Shift"     }, "t", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -476,7 +476,7 @@ globalkeys = my_table.join(
     -- User programs
     awful.key({ modkey }, "q", function () awful.spawn(browser) end,
               {description = "run browser", group = "launcher"}),
-    awful.key({ modkey }, "a", function () awful.spawn(guieditor) end,
+    awful.key({ "Control", "Shift" }, "c", function () awful.spawn(guieditor) end,
               {description = "run gui editor", group = "launcher"}),
 
     -- Default
@@ -556,15 +556,15 @@ for i = 1, 9 do
     end
     globalkeys = my_table.join(globalkeys,
         -- View tag only.
-        awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        if tag then
-                           tag:view_only()
-                        end
-                  end,
-                  descr_view),
+        -- awful.key({ modkey }, "#" .. i + 9,
+        --           function ()
+        --                 local screen = awful.screen.focused()
+        --                 local tag = screen.tags[i]
+        --                 if tag then
+        --                    tag:view_only()
+        --                 end
+        --           end,
+        --           descr_view),
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()

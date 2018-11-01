@@ -16,7 +16,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.confdir                                   = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
 theme.wallpaper                                 = theme.confdir .. "/wall.png"
-theme.font                                      = "Lucida Grande 10.75"
+theme.font                                      = "Lucida Grande 10.5"
 theme.menu_bg_normal                            = "#000000"
 theme.menu_bg_focus                             = "#000000"
 theme.fg_minimize                               = "#ffffff"
@@ -73,8 +73,7 @@ theme.layout_max                                = theme.confdir .. "/icons/max.p
 theme.layout_fullscreen                         = theme.confdir .. "/icons/fullscreen.png"
 theme.layout_magnifier                          = theme.confdir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.confdir .. "/icons/floating.png"
-theme.awesome_icon_launcher                     = theme.confdir .. "/icons/awesome_icon.png"
-theme.awesome_icon                              = theme.confdir .. "/icons/awesome_icon_white.png"
+theme.awesome_icon                              = theme.confdir .. "/icons/awesome_icon.png"
 theme.titlebar_close_button_normal              = theme.confdir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.confdir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_minimize_button_normal           = theme.confdir .. "/icons/titlebar/minimize_normal.png"
@@ -101,7 +100,7 @@ local markup = lain.util.markup
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#ab7367", ">") .. markup("#de5e1e", " %H:%M "))
+local mytextclock = wibox.widget.textclock(markup("#FFFFFF", " %d %b ") .. markup("#FFFFFF", ",") .. markup("#FFFFFF", " %I:%M %p "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -119,11 +118,11 @@ local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "Lucida Grande 11", fg = theme.fg_normal },
-    weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
+    weather_na_markup = markup.fontfg(theme.font, "#FFFFFF", "N/A "),
     settings = function()
         descr = weather_now["weather"][1]["description"]:lower()
         units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", descr .. " @ " .. units .. "°C "))
     end
 })
 
@@ -133,7 +132,7 @@ local fsicon = wibox.widget.imagebox(theme.widget_fs)
 theme.fs = lain.widget.fs({
     notification_preset = { font = "Lucida Grande 10", fg = theme.fg_normal },
     settings  = function()
-        widget:set_markup(markup.fontfg(theme.font, "#80d9d8", string.format("%.1f", fs_now["/"].used) .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", string.format("%.1f", fs_now["/"].used) .. "% "))
     end
 })
 
@@ -162,14 +161,14 @@ theme.mail = lain.widget.imap({
 --]]
 
 -- Launcher
-local mylauncher = awful.widget.button({ image = theme.awesome_icon_launcher })
+local mylauncher = awful.widget.button({ image = theme.awesome_icon })
 mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:toggle() end)
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", cpu_now.usage .. "% "))
     end
 })
 
@@ -177,7 +176,7 @@ local cpu = lain.widget.cpu({
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp = lain.widget.temp({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", coretemp_now .. "°C "))
     end
 })
 
@@ -203,7 +202,7 @@ theme.volume = lain.widget.alsa({
             volume_now.level = volume_now.level .. "M"
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#7493d2", volume_now.level .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", volume_now.level .. "% "))
     end
 })
 
@@ -219,8 +218,8 @@ local netupinfo = lain.widget.net({
             theme.weather.update()
         end
 
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", net_now.sent .. " "))
-        netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", net_now.sent .. " "))
+        netdowninfo:set_markup(markup.fontfg(theme.font, "#FFFFFF", net_now.received .. " "))
     end
 })
 
@@ -228,7 +227,7 @@ local netupinfo = lain.widget.net({
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local memory = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "MB "))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", mem_now.used .. "MB "))
     end
 })
 
@@ -256,7 +255,7 @@ theme.mpd = lain.widget.mpd({
             mpdicon:emit_signal("widget::redraw_needed")
             mpdicon:emit_signal("widget::layout_changed")
         end
-        widget:set_markup(markup.fontfg(theme.font, "#e54c62", artist) .. markup.fontfg(theme.font, "#b2b2b2", title))
+        widget:set_markup(markup.fontfg(theme.font, "#FFFFFF", artist) .. markup.fontfg(theme.font, "#FFFFFF", title))
     end
 })
 
