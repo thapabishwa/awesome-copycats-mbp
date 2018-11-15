@@ -87,10 +87,10 @@ local themes = {
 local chosen_theme = themes[5]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "konsole"
+local terminal     = "terminator"
 local editor       = os.getenv("EDITOR") or "code"
-local gui_editor   = "code"
-local browser      = "chrome"
+local gui_editor   = "thunar"
+local browser      = "palemoon"
 local guieditor    = "code"
 local scrlocker    = "slock"
 
