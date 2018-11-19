@@ -87,7 +87,7 @@ local themes = {
 local chosen_theme = themes[5]
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "terminator"
+local terminal     = "konsole"
 local editor       = os.getenv("EDITOR") or "code"
 local gui_editor   = "thunar"
 local browser      = "palemoon"
@@ -407,6 +407,12 @@ globalkeys = my_table.join(
               {description = "+10%", group = "hotkeys"}),
     awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end,
               {description = "-10%", group = "hotkeys"}),
+
+    -- Backlight
+    awful.key({ }, "XF86KbdBrightnessUp", function () os.execute("kbdlight up") end,
+        {description = "+10%", group = "hotkeys"}),
+    awful.key({ }, "XF86KbdBrightnessDown", function () os.execute("kbdlight down") end,
+        {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
     awful.key({ }, "XF86AudioRaiseVolume",
